@@ -298,12 +298,12 @@ def align_breaks(break_type, m_path, in_reference_file, in_contigs_file, in_num_
     current_path = os.getcwd()
     os.chdir('chimera_break')
     if break_type == 'inter':
-        cmd = '{} -k19 -w19 -t{} ../../{} {} ' \
+        cmd = '{} -k19 -w19 -t{} {} {} ' \
           '> inter_contigs_against_ref.paf 2> inter_contigs_against_ref.paf.log'.format(m_path, in_num_threads, in_reference_file, in_contigs_file)
         if not os.path.isfile('inter_contigs_against_ref.paf'):
             run(cmd)
     else:
-        cmd = '{} -k19 -w19 -t{} ../../{} {} ' \
+        cmd = '{} -k19 -w19 -t{} {} {} ' \
               '> intra_contigs_against_ref.paf 2> intra_contigs_against_ref.paf.log'.format(m_path, in_num_threads, in_reference_file, in_contigs_file)
         if not os.path.isfile('intra_contigs_against_ref.paf'):
             run(cmd)
@@ -318,7 +318,7 @@ def align_pms(m_path, num_threads, in_reference_file):
         os.makedirs(output_path)
     os.chdir('pm_alignments')
 
-    cmd = '{} -ax asm5 --cs -t{} ../../{} {} ' \
+    cmd = '{} -ax asm5 --cs -t{} {} {} ' \
           '> pm_against_ref.sam 2> pm_contigs_against_ref.sam.log'.format(m_path, num_threads,
                                                                                         in_reference_file, '../ragoo.fasta')
     if not os.path.isfile('pm_against_ref.sam'):
@@ -362,7 +362,7 @@ def get_SVs(sv_min, sv_max, in_ref_file):
         f.write(b2)
 
     # Filter out SVs caused by gaps
-    cmd_5 = 'filter_gap_SVs.py ../../%s' %(in_ref_file)
+    cmd_5 = 'filter_gap_SVs.py %s' %(in_ref_file)
     run(cmd_5)
 
     os.chdir(current_path)
@@ -428,7 +428,7 @@ if __name__ == "__main__":
     os.chdir(output_path)
 
     # Run minimap2
-    cmd = '{} -k19 -w19 -t{} ../{} ../{} ' \
+    cmd = '{} -k19 -w19 -t{} {} {} ' \
           '> contigs_against_ref.paf 2> contigs_against_ref.paf.log'.format(minimap_path, t, reference_file, contigs_file)
 
     if not os.path.isfile('contigs_against_ref.paf'):
