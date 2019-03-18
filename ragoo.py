@@ -443,7 +443,7 @@ if __name__ == "__main__":
     if gff_file:
         log('-- Getting gff features')
         features = defaultdict(list)
-        z = GFFReader('../' + gff_file)
+        z = GFFReader(gff_file)
         for i in z.parse_gff():
             features[i.seqname].append(i)
 
@@ -456,7 +456,7 @@ if __name__ == "__main__":
         alns = clean_alignments(alns, l=10000, in_exclude_file=exclude_file, uniq_anchor_filter=True)
         # Process contigs
         log('-- Getting contigs')
-        contigs_dict = read_contigs('../' + contigs_file)
+        contigs_dict = read_contigs(contigs_file)
 
         log('-- Finding interchromosomally chimeric contigs')
         all_chimeras = dict()
