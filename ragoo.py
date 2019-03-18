@@ -216,7 +216,7 @@ def create_pseudomolecules(in_contigs_file, in_unique_contigs, gap_size):
     # First, read all of the contigs into memory
     remaining_contig_headers = []
     all_seqs = dict()
-    x = SeqReader('../' + in_contigs_file)
+    x = SeqReader(in_contigs_file)
     for header, seq in x.parse_fasta():
         remaining_contig_headers.append(header.split(' ')[0])
         all_seqs[header.split(' ')[0]] = seq
