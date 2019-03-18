@@ -536,7 +536,7 @@ if __name__ == "__main__":
         log('-- Reading intrachromosomal chimera broken alignments')
         alns = read_paf_alignments('chimera_break/intra_contigs_against_ref.paf')
         alns = clean_alignments(alns, l=1000, in_exclude_file=exclude_file)
-        contigs_file = '/ragoo_output/chimera_break/' + out_intra_fasta
+        contigs_file = out_intra_fasta
         log('-- The total number of interchromasomally chimeric contigs broken is %r' % total_inter_broken)
         log('-- The total number of intrachromasomally chimeric contigs broken is %r' % total_intra_broken)
 
